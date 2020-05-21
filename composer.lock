@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad0df1d05f21091415534b570b484235",
+    "content-hash": "067681c3f7fd9d07163a107efacd3c9f",
     "packages": [
         {
             "name": "brick/math",
@@ -1749,6 +1749,58 @@
                 "lumen"
             ],
             "time": "2020-05-05T18:17:08+00:00"
+        },
+        {
+            "name": "laravelista/lumen-vendor-publish",
+            "version": "7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravelista/lumen-vendor-publish.git",
+                "reference": "b13336960f5465da37247672706887c346b3d3b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravelista/lumen-vendor-publish/zipball/b13336960f5465da37247672706887c346b3d3b6",
+                "reference": "b13336960f5465da37247672706887c346b3d3b6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0",
+                "illuminate/filesystem": "^7.0",
+                "illuminate/support": "^7.0",
+                "league/flysystem": "^1.0.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laravelista\\LumenVendorPublish\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mario Bašić",
+                    "email": "mario@laravelista.hr"
+                }
+            ],
+            "description": "vendor:publish for Lumen framework.",
+            "keywords": [
+                "command",
+                "console",
+                "lumen",
+                "publish",
+                "vendor"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/laravelista",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-03-31T15:45:14+00:00"
         },
         {
             "name": "league/flysystem",
