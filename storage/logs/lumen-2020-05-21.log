@@ -1,0 +1,82 @@
+[2020-05-21 23:11:40] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "serve" is not defined. in D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php:644
+Stack trace:
+#0 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(228): Symfony\Component\Console\Application->find('serve')
+#1 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(140): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 D:\GitHub\taz-article-crawler\vendor\illuminate\console\Application.php(93): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 D:\GitHub\taz-article-crawler\vendor\laravel\lumen-framework\src\Console\Kernel.php(116): Illuminate\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 D:\GitHub\taz-article-crawler\artisan(35): Laravel\Lumen\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main} {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"serve\" is not defined. at D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php:644)
+[stacktrace]
+#0 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(228): Symfony\\Component\\Console\\Application->find('serve')
+#1 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(140): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\console\\Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\GitHub\\taz-article-crawler\\vendor\\laravel\\lumen-framework\\src\\Console\\Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\GitHub\\taz-article-crawler\\artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2020-05-21 23:12:47] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "serve" is not defined. in D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php:644
+Stack trace:
+#0 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(228): Symfony\Component\Console\Application->find('serve')
+#1 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(140): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 D:\GitHub\taz-article-crawler\vendor\illuminate\console\Application.php(93): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 D:\GitHub\taz-article-crawler\vendor\laravel\lumen-framework\src\Console\Kernel.php(116): Illuminate\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 D:\GitHub\taz-article-crawler\artisan(35): Laravel\Lumen\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main} {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"serve\" is not defined. at D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php:644)
+[stacktrace]
+#0 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(228): Symfony\\Component\\Console\\Application->find('serve')
+#1 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(140): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\console\\Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\GitHub\\taz-article-crawler\\vendor\\laravel\\lumen-framework\\src\\Console\\Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\GitHub\\taz-article-crawler\\artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2020-05-21 23:14:32] local.ERROR: Error: Class 'League\Flysystem\Adapter\Local' not found in D:\GitHub\taz-article-crawler\vendor\illuminate\filesystem\FilesystemManager.php:164
+Stack trace:
+#0 D:\GitHub\taz-article-crawler\vendor\illuminate\filesystem\FilesystemManager.php(129): Illuminate\Filesystem\FilesystemManager->createLocalDriver(Array)
+#1 D:\GitHub\taz-article-crawler\vendor\illuminate\filesystem\FilesystemManager.php(101): Illuminate\Filesystem\FilesystemManager->resolve('local')
+#2 D:\GitHub\taz-article-crawler\vendor\illuminate\filesystem\FilesystemManager.php(78): Illuminate\Filesystem\FilesystemManager->get('local')
+#3 D:\GitHub\taz-article-crawler\vendor\illuminate\support\Facades\Facade.php(261): Illuminate\Filesystem\FilesystemManager->disk()
+#4 D:\GitHub\taz-article-crawler\vendor\barryvdh\laravel-ide-helper\src\Generator.php(182): Illuminate\Support\Facades\Facade::__callStatic('disk', Array)
+#5 D:\GitHub\taz-article-crawler\vendor\barryvdh\laravel-ide-helper\src\Generator.php(51): Barryvdh\LaravelIdeHelper\Generator->detectDrivers()
+#6 D:\GitHub\taz-article-crawler\vendor\barryvdh\laravel-ide-helper\src\Console\GeneratorCommand.php(112): Barryvdh\LaravelIdeHelper\Generator->__construct(Object(Illuminate\Config\Repository), Object(Illuminate\View\Factory), Object(Illuminate\Console\OutputStyle), '')
+#7 [internal function]: Barryvdh\LaravelIdeHelper\Console\GeneratorCommand->handle()
+#8 D:\GitHub\taz-article-crawler\vendor\illuminate\container\BoundMethod.php(33): call_user_func_array(Array, Array)
+#9 D:\GitHub\taz-article-crawler\vendor\illuminate\container\Util.php(36): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#10 D:\GitHub\taz-article-crawler\vendor\illuminate\container\BoundMethod.php(91): Illuminate\Container\Util::unwrapIfClosure(Object(Closure))
+#11 D:\GitHub\taz-article-crawler\vendor\illuminate\container\BoundMethod.php(35): Illuminate\Container\BoundMethod::callBoundMethod(Object(Laravel\Lumen\Application), Array, Object(Closure))
+#12 D:\GitHub\taz-article-crawler\vendor\illuminate\container\Container.php(592): Illuminate\Container\BoundMethod::call(Object(Laravel\Lumen\Application), Array, Array, NULL)
+#13 D:\GitHub\taz-article-crawler\vendor\illuminate\console\Command.php(134): Illuminate\Container\Container->call(Array)
+#14 D:\GitHub\taz-article-crawler\vendor\symfony\console\Command\Command.php(255): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#15 D:\GitHub\taz-article-crawler\vendor\illuminate\console\Command.php(121): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#16 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(912): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(264): Symfony\Component\Console\Application->doRunCommand(Object(Barryvdh\LaravelIdeHelper\Console\GeneratorCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 D:\GitHub\taz-article-crawler\vendor\symfony\console\Application.php(140): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 D:\GitHub\taz-article-crawler\vendor\illuminate\console\Application.php(93): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 D:\GitHub\taz-article-crawler\vendor\laravel\lumen-framework\src\Console\Kernel.php(116): Illuminate\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 D:\GitHub\taz-article-crawler\artisan(35): Laravel\Lumen\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 {main} {"exception":"[object] (Error(code: 0): Class 'League\\Flysystem\\Adapter\\Local' not found at D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\filesystem\\FilesystemManager.php:164)
+[stacktrace]
+#0 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\filesystem\\FilesystemManager.php(129): Illuminate\\Filesystem\\FilesystemManager->createLocalDriver(Array)
+#1 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\filesystem\\FilesystemManager.php(101): Illuminate\\Filesystem\\FilesystemManager->resolve('local')
+#2 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\filesystem\\FilesystemManager.php(78): Illuminate\\Filesystem\\FilesystemManager->get('local')
+#3 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\support\\Facades\\Facade.php(261): Illuminate\\Filesystem\\FilesystemManager->disk()
+#4 D:\\GitHub\\taz-article-crawler\\vendor\\barryvdh\\laravel-ide-helper\\src\\Generator.php(182): Illuminate\\Support\\Facades\\Facade::__callStatic('disk', Array)
+#5 D:\\GitHub\\taz-article-crawler\\vendor\\barryvdh\\laravel-ide-helper\\src\\Generator.php(51): Barryvdh\\LaravelIdeHelper\\Generator->detectDrivers()
+#6 D:\\GitHub\\taz-article-crawler\\vendor\\barryvdh\\laravel-ide-helper\\src\\Console\\GeneratorCommand.php(112): Barryvdh\\LaravelIdeHelper\\Generator->__construct(Object(Illuminate\\Config\\Repository), Object(Illuminate\\View\\Factory), Object(Illuminate\\Console\\OutputStyle), '')
+#7 [internal function]: Barryvdh\\LaravelIdeHelper\\Console\\GeneratorCommand->handle()
+#8 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\container\\BoundMethod.php(33): call_user_func_array(Array, Array)
+#9 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\container\\Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#10 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\container\\BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#11 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Laravel\\Lumen\\Application), Array, Object(Closure))
+#12 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\container\\Container.php(592): Illuminate\\Container\\BoundMethod::call(Object(Laravel\\Lumen\\Application), Array, Array, NULL)
+#13 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\console\\Command.php(134): Illuminate\\Container\\Container->call(Array)
+#14 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Command\\Command.php(255): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#15 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\console\\Command.php(121): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#16 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(912): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand(Object(Barryvdh\\LaravelIdeHelper\\Console\\GeneratorCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#18 D:\\GitHub\\taz-article-crawler\\vendor\\symfony\\console\\Application.php(140): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 D:\\GitHub\\taz-article-crawler\\vendor\\illuminate\\console\\Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 D:\\GitHub\\taz-article-crawler\\vendor\\laravel\\lumen-framework\\src\\Console\\Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 D:\\GitHub\\taz-article-crawler\\artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 {main}
+"} 
