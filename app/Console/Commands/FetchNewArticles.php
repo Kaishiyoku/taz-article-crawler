@@ -5,10 +5,10 @@ namespace App\Console\Commands;
 use App\Models\Article;
 use App\Models\Author;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Kaishiyoku\HeraRssCrawler\HeraRssCrawler;
 use Kaishiyoku\HeraRssCrawler\Models\Rss\FeedItem;
-use Symfony\Component\CssSelector\CssSelectorConverter;
 use Symfony\Component\DomCrawler\Crawler;
 
 class FetchNewArticles extends Command
@@ -56,44 +56,57 @@ class FetchNewArticles extends Command
 
         $feed = $rssCrawler->parseFeed(env('RSS_FEED_URL'));
 
-        $feed->getFeedItems()->each(function (FeedItem $feedItem) {
-            $this->line($feedItem->getPermalink());
-
+        $newArticles = $feed->getFeedItems()->reduce(function (Collection $carry, FeedItem $feedItem) {
             $guid = (int) filter_var($feedItem->getId(), FILTER_SANITIZE_NUMBER_INT);
-            $url = env('BASE_URL') . '!' . $guid;
+            $url = config('crawler.base_url') . '!' . $guid;
 
-            $crawler = new Crawler(Http::get($url)->body());
+            $articleCrawler = new Crawler(Http::get($url)->body());
 
-            $selectorConverter = new CssSelectorConverter();
+            $authorNameNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_NAME_CSS_SELECTOR));
 
-            $authorNameNode = $crawler->filterXPath($selectorConverter->toXPath(self::AUTHOR_NAME_CSS_SELECTOR));
-
-            $author = $authorNameNode->count() === 0 ? Author::getDefaultAuthor() : Author::whereName($authorNameNode->text())->firstOr(function () use ($crawler, $selectorConverter, $authorNameNode, $feedItem, $url) {
-                $jobTitleNode = $crawler->filterXPath($selectorConverter->toXPath(self::AUTHOR_JOB_TITLE_CSS_SELECTOR));
-
-                $newAuthor = new Author();
-                $newAuthor->name = $authorNameNode->text();
-                $newAuthor->job_title = $jobTitleNode->count() === 0 ? null : defaultToNull($jobTitleNode->text());
-
-                $authorUrl = env('BASE_URL') . ltrim($crawler->filterXPath($selectorConverter->toXPath(self::AUTHOR_LINK_CSS_SELECTOR))->attr('href'), '/');
-
-                $authorCrawler = new Crawler(Http::get($authorUrl)->body());
-                $authorDescriptionNode = $authorCrawler->filterXPath($selectorConverter->toXPath(self::AUTHOR_DESCRIPTION_CSS_SELECTOR));
-                $newAuthor->description = $authorDescriptionNode->count() === 0 ? null : defaultToNull($authorDescriptionNode->text());
-
-                $newAuthor->save();
-
-                return $newAuthor;
-            });
+            $author = $authorNameNode->count() === 0
+                ? Author::getDefaultAuthor()
+                : Author::whereName($authorNameNode->text())
+                    ->firstOr($this->fetchNewAuthorFn($articleCrawler, $authorNameNode, $feedItem));
 
             if (Article::find($guid) === null) {
+                $this->line("Adding new article {$feedItem->getPermalink()}");
+
                 $article = new Article();
                 $article->guid = $guid;
                 $article->author_id = $author->id;
                 $article->url = $url;
 
                 $article->save();
+
+                return $carry->merge(['a']);
             }
-        });
+
+            return $carry;
+        }, collect());
+
+        $this->line("Added {$newArticles->count()} new articles.");
+    }
+
+    private function fetchNewAuthorFn(Crawler $articleCrawler, $authorNameNode, $feedItem)
+    {
+        return function () use ($articleCrawler, $authorNameNode, $feedItem) {
+            $jobTitleNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_JOB_TITLE_CSS_SELECTOR));
+
+            $newAuthor = new Author();
+            $newAuthor->name = $authorNameNode->text();
+            $newAuthor->job_title = getNodeText($jobTitleNode);
+
+            $authorUrl = env('BASE_URL') . ltrim($articleCrawler->filterXPath(toXPath(self::AUTHOR_LINK_CSS_SELECTOR))->attr('href'), '/');
+
+            $authorCrawler = new Crawler(Http::get($authorUrl)->body());
+            $authorDescriptionNode = $authorCrawler->filterXPath(toXPath(self::AUTHOR_DESCRIPTION_CSS_SELECTOR));
+
+            $newAuthor->description = getNodeText($authorDescriptionNode);
+
+            $newAuthor->save();
+
+            return $newAuthor;
+        };
     }
 }
