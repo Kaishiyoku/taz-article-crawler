@@ -15,13 +15,13 @@ class CreateAuthorsTable extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('job_title')->nullable();
             $table->text('description')->nullable();
         });
 
         $unknownAuthor = new \App\Models\Author();
-        $unknownAuthor->name = 'Unknown';
+        $unknownAuthor->name = config('crawler.unknown_author_name');
 
         $unknownAuthor->save();
     }
