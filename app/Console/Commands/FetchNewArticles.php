@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Article;
 use App\Models\Author;
+use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -36,19 +37,7 @@ class FetchNewArticles extends Command
     protected $description = 'Fetches all new articles via RSS feed';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -88,7 +77,7 @@ class FetchNewArticles extends Command
         $this->line("Added {$newArticles->count()} new articles.");
     }
 
-    private function fetchNewAuthorFn(Crawler $articleCrawler, $authorNameNode, $feedItem)
+    private function fetchNewAuthorFn(Crawler $articleCrawler, $authorNameNode, $feedItem): Closure
     {
         return function () use ($articleCrawler, $authorNameNode, $feedItem) {
             $jobTitleNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_JOB_TITLE_CSS_SELECTOR));
