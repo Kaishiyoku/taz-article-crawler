@@ -79,7 +79,7 @@ class FetchNewArticles extends Command
 
                 $article->save();
 
-                return $carry->merge(['a']);
+                return $carry->merge([$article]);
             }
 
             return $carry;
