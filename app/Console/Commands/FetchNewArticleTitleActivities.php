@@ -38,8 +38,8 @@ class FetchNewArticleTitleActivities extends Command
         $articles->each(function (Article $article) {
             $crawler = crawlUrl($article->url);
 
-            $title = getNodeText($crawler->filterXPath(toXPath(self::ARTICLE_TITLE_CSS_SELECTOR)));
-            $subTitle = getNodeText($crawler->filterXPath(toXPath(self::ARTICLE_SUB_TITLE_CSS_SELECTOR)));
+            $title = getNodeText(filterXPath(self::ARTICLE_TITLE_CSS_SELECTOR, $crawler));
+            $subTitle = getNodeText(filterXPath(self::ARTICLE_SUB_TITLE_CSS_SELECTOR, $crawler));
 
             // Only create a new activity when the title or subtitle differ the latest saved one
             $article->articleTitleActivities()

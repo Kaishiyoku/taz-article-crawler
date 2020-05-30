@@ -51,7 +51,7 @@ class FetchNewArticles extends Command
 
             $articleCrawler = crawlUrl($url);
 
-            $authorNameNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_NAME_CSS_SELECTOR));
+            $authorNameNode = filterXPath(self::AUTHOR_NAME_CSS_SELECTOR, $articleCrawler);
 
             $author = $authorNameNode->count() === 0
                 ? Author::getDefaultAuthor()
@@ -82,16 +82,16 @@ class FetchNewArticles extends Command
     private function fetchNewAuthorFn(Crawler $articleCrawler, $authorNameNode, $feedItem): Closure
     {
         return function () use ($articleCrawler, $authorNameNode, $feedItem) {
-            $jobTitleNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_JOB_TITLE_CSS_SELECTOR));
+            $jobTitleNode = filterXPath(self::AUTHOR_JOB_TITLE_CSS_SELECTOR, $articleCrawler);
 
             $newAuthor = new Author();
             $newAuthor->name = $authorNameNode->text();
             $newAuthor->job_title = getNodeText($jobTitleNode);
 
-            $authorUrl = env('BASE_URL') . ltrim($articleCrawler->filterXPath(toXPath(self::AUTHOR_LINK_CSS_SELECTOR))->attr('href'), '/');
+            $authorUrl = env('BASE_URL') . ltrim(filterXPath(self::AUTHOR_LINK_CSS_SELECTOR, $articleCrawler)->attr('href'), '/');
 
             $authorCrawler = crawlUrl($authorUrl);
-            $authorDescriptionNode = $authorCrawler->filterXPath(toXPath(self::AUTHOR_DESCRIPTION_CSS_SELECTOR));
+            $authorDescriptionNode = filterXPath(self::AUTHOR_DESCRIPTION_CSS_SELECTOR, $authorCrawler);
 
             $newAuthor->description = getNodeText($authorDescriptionNode);
 

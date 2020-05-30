@@ -11,6 +11,13 @@ if (!function_exists('defaultToNull')) {
     }
 }
 
+if (!function_exists('filterXPath')) {
+    function filterXPath(string $cssSelector, Crawler $crawler): Crawler
+    {
+        return $crawler->filterXPath(toXPath($cssSelector));
+    }
+}
+
 if (!function_exists('toXPath')) {
     function toXPath(string $cssSelector): string
     {
