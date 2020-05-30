@@ -18,6 +18,7 @@ class CreateArticleTitleActivitiesTable extends Migration
             $table->unsignedBigInteger('article_guid');
             $table->string('title');
             $table->string('sub_title');
+            $table->text('description');
             $table->timestamp('created_at')->nullable();
 
             $table->foreign('article_guid')->references('guid')->on('articles');

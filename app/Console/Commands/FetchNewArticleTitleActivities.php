@@ -12,6 +12,8 @@ class FetchNewArticleTitleActivities extends Command
 
     private const ARTICLE_SUB_TITLE_CSS_SELECTOR = 'h1[itemprop="headline"] > span.kicker';
 
+    private const ARTICLE_DESCRIPTION_CSS_SELECTOR = 'p[itemprop="description"]';
+
     /**
      * The name and signature of the console command.
      *
@@ -40,16 +42,18 @@ class FetchNewArticleTitleActivities extends Command
 
             $title = getNodeText(filterXPath(self::ARTICLE_TITLE_CSS_SELECTOR, $crawler));
             $subTitle = getNodeText(filterXPath(self::ARTICLE_SUB_TITLE_CSS_SELECTOR, $crawler));
+            $description = getNodeText(filterXPath(self::ARTICLE_DESCRIPTION_CSS_SELECTOR, $crawler));
 
             // Only create a new activity when the title or subtitle differ the latest saved one
             $article->articleTitleActivities()
                 ->take(1)
                 ->whereTitle($title)
                 ->whereSubTitle($subTitle)
-                ->firstOr(function () use ($article, $title, $subTitle) {
+                ->firstOr(function () use ($article, $title, $subTitle, $description) {
                     $articleTitleActivity = new ArticleTitleActivity();
                     $articleTitleActivity->title = $title;
                     $articleTitleActivity->sub_title = $subTitle;
+                    $articleTitleActivity->description = $description;
 
                     $article->articleTitleActivities()->save($articleTitleActivity);
 
