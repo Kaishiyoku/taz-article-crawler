@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
- * @property string $designation
+ * @property string|null $job_title
  * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article[] $articles
  * @property-read int|null $articles_count
@@ -17,12 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereDesignation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereJobTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereName($value)
  * @mixin \Eloquent
- * @property string $job_title
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Author whereJobTitle($value)
  */
 class Author extends Model
 {

@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\CssSelector\CssSelectorConverter;
+use Symfony\Component\DomCrawler\Crawler;
 
 if (!function_exists('defaultToNull')) {
     function defaultToNull($value)
@@ -20,5 +22,12 @@ if (!function_exists('getNodeText')) {
     function getNodeText($node)
     {
         return $node->count() === 0 ? null : defaultToNull($node->text());
+    }
+}
+
+if (!function_exists('crawlUrl')) {
+    function crawlUrl(string $url): Crawler
+    {
+        return new Crawler(Http::get($url)->body());
     }
 }

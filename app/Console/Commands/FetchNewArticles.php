@@ -7,7 +7,7 @@ use App\Models\Author;
 use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Artisan;
 use Kaishiyoku\HeraRssCrawler\HeraRssCrawler;
 use Kaishiyoku\HeraRssCrawler\Models\Rss\FeedItem;
 use Symfony\Component\DomCrawler\Crawler;
@@ -49,7 +49,7 @@ class FetchNewArticles extends Command
             $guid = (int) filter_var($feedItem->getId(), FILTER_SANITIZE_NUMBER_INT);
             $url = config('crawler.base_url') . '!' . $guid;
 
-            $articleCrawler = new Crawler(Http::get($url)->body());
+            $articleCrawler = crawlUrl($url);
 
             $authorNameNode = $articleCrawler->filterXPath(toXPath(self::AUTHOR_NAME_CSS_SELECTOR));
 
@@ -58,7 +58,7 @@ class FetchNewArticles extends Command
                 : Author::whereName($authorNameNode->text())
                     ->firstOr($this->fetchNewAuthorFn($articleCrawler, $authorNameNode, $feedItem));
 
-            if (Article::find($guid) === null) {
+            if (!Article::find($guid)) {
                 $this->line("Adding new article {$feedItem->getPermalink()}");
 
                 $article = new Article();
@@ -67,6 +67,8 @@ class FetchNewArticles extends Command
                 $article->url = $url;
 
                 $article->save();
+
+                Artisan::call(FetchNewArticleTitleActivities::class, ['article' => $guid]);
 
                 return $carry->merge([$article]);
             }
@@ -88,7 +90,7 @@ class FetchNewArticles extends Command
 
             $authorUrl = env('BASE_URL') . ltrim($articleCrawler->filterXPath(toXPath(self::AUTHOR_LINK_CSS_SELECTOR))->attr('href'), '/');
 
-            $authorCrawler = new Crawler(Http::get($authorUrl)->body());
+            $authorCrawler = crawlUrl($authorUrl);
             $authorDescriptionNode = $authorCrawler->filterXPath(toXPath(self::AUTHOR_DESCRIPTION_CSS_SELECTOR));
 
             $newAuthor->description = getNodeText($authorDescriptionNode);

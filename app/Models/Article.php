@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $guid
  * @property int $author_id
+ * @property string $url
  * @property \Illuminate\Support\Carbon $posted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ArticleTitleActivity[] $articleTitleActivities
+ * @property-read int|null $article_title_activities_count
  * @property-read \App\Models\Author $author
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newQuery()
@@ -17,9 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereGuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article wherePostedAt($value)
- * @mixin \Eloquent
- * @property string $url
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUrl($value)
+ * @mixin \Eloquent
  */
 class Article extends Model
 {
@@ -35,7 +37,7 @@ class Article extends Model
      *
      * @var bool
      */
-    public $incrementing = true;
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
@@ -63,5 +65,10 @@ class Article extends Model
     public function author()
     {
         return $this->belongsTo(Author::class);
+    }
+
+    public function articleTitleActivities()
+    {
+        return $this->hasMany(ArticleTitleActivity::class)->orderBy('created_at', 'desc');
     }
 }

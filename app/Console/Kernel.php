@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\FetchNewArticles;
+use App\Console\Commands\FetchNewArticleTitleActivities;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \Laravelista\LumenVendorPublish\VendorPublishCommand::class,
         FetchNewArticles::class,
+        FetchNewArticleTitleActivities::class,
     ];
 
     /**
@@ -26,6 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(FetchNewArticles::class)->everyFiveMinutes();
+        $schedule->command(FetchNewArticles::class)->everyTenMinutes();
+        $schedule->command(FetchNewArticleTitleActivities::class)->everyFiveMinutes();
     }
 }
