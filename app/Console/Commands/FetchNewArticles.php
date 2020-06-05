@@ -27,7 +27,7 @@ class FetchNewArticles extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:fetch_new_articles';
+    protected $signature = 'crawl:articles';
 
     /**
      * The console command description.

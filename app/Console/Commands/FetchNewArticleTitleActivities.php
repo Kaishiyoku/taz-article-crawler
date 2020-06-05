@@ -19,7 +19,7 @@ class FetchNewArticleTitleActivities extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:fetch_new_article_title_activities {article?}';
+    protected $signature = 'crawl:activities {article?}';
 
     /**
      * The console command description.
